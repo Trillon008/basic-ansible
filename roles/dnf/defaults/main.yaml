@@ -1,0 +1,13 @@
+---
+packages:
+  - wget
+  - curl
+  - bind-utils
+  - bat
+  - htop
+  - unzip
+  - neovim
+  - kubectl
+  - azcopy
+  - azure-cli
+

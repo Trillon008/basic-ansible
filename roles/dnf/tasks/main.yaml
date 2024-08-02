@@ -1,0 +1,31 @@
+---
+- name: Enable CRB 
+  ansible.builtin.cmd: dnf config-manager --set-enabled crb
+
+
+- name: Add Epel repo
+  ansible.builtin.yum_repositoy:
+    name: epel
+    enabled: true
+    baseurl: https://dl.fedoraproject.org/pub/epel/$releasever/Everything/$basearch/
+    metalink: https://mirrors.fedoraproject.org/metalink?repo=epel-$releasever&arch=$basearch&infra=$infra&content=$contentdir
+    gpgkey: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-9
+    gpgcheck: true
+
+- name: Add Kubernetes Repo
+  ansible.builtin.yum_repository:
+    name: kubernetes
+    baseurl: https://pkgs.k8s.io/core:/stable:/v1.30/rpm/
+    enabled: true
+    gpgcheck: true
+    gpgkey: https://pkgs.k8s.io/core:/stable:/v1.30/rpm/repodata/repomd.xml.key
+
+
+- name: Install packages
+  ansible.builtin.dnf:
+    name:
+      - "{{ item }}"
+    state: present
+    disable_gpg_check: false
+  loop: "{{ packages }}"
+
