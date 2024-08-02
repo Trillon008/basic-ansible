@@ -6,12 +6,12 @@
     line: SELINUX=permissive
 
 - name: SSHD config
-  lineinefile:
+  lineinfile:
     path: /etc/ssh/sshd_config
     regexp: '^#{{ item.key }}'
     line: '{{ item.key }} {{ item.value }}'
   loop:
-    - { key: "ClientAliveMaxCount", value: 7 }
+    - { key: "ClientAliveCountMax", value: 7 }
     - { key: "ClientAliveInterval", value: 180 }
   notify:
     - Restart sshd
