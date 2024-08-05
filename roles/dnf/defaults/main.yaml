@@ -1,7 +1,10 @@
 ---
+dest_folder: "/usr/local/bin"
+
 packages:
   - wget
   - curl
+  - bash-completion
   - bind-utils
   - bat
   - tmux
@@ -14,9 +17,9 @@ packages:
   - azure-cli
 
 packages_url:
-  - https://github.com/derailed/k9s/releases/download/v0.32.5/k9s_Linux_amd64.tar.gz
-  - https://github.com/Azure/kubelogin/releases/download/v0.1.1/kubelogin-linux-amd64.zip
-  - https://github.com/fluxcd/flux2/releases/download/v2.2.3/flux_2.2.3_linux_amd64.tar.gz
-  - https://get.helm.sh/helm-v3.11.2-linux-amd64.tar.gz
-  - https://github.com/cert-manager/cert-manager/releases/download/v1.11.0/cmctl-linux-amd64.tar.gz
-  - https://github.com/IBM-Cloud/redli/releases/download/v0.12.0/redli_0.12.0_linux_amd64.tar.gz 
+  - { name: k9s, url: https://github.com/derailed/k9s/releases/download/v0.32.5/k9s_Linux_amd64.tar.gz, opts: "" }
+  - { name: flux, url: https://github.com/fluxcd/flux2/releases/download/v2.2.3/flux_2.2.3_linux_amd64.tar.gz, opts: "" }
+  - { name: cmctl, url: https://github.com/cert-manager/cert-manager/releases/download/v1.14.7/cmctl-linux-amd64.tar.gz, opts: "" }
+  - { name: redli, url: https://github.com/IBM-Cloud/redli/releases/download/v0.12.0/redli_0.12.0_linux_amd64.tar.gz, opts: "" }
+  - { name: helm, url: https://get.helm.sh/helm-v3.15.3-linux-amd64.tar.gz, opts: "--strip-components=1" }
+  - { name: kubelogin, url: https://github.com/Azure/kubelogin/releases/download/v0.1.4/kubelogin-linux-amd64.zip, opts: "-j" }

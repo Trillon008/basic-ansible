@@ -19,10 +19,13 @@
     disable_gpg_check: false
   loop: "{{ packages }}"
 
-- name: Install package from url
+
+- name: Install extra packages from url
   ansible.builtin.unarchive:
-    src: {{ item }}
-    dest: /usr/local/bin
+    src: "{{ item.url }}"
+    dest: "{{ dest_folder }}/"
+    creates: "{{ dest_folder }}/{{ item.name }}"
+    extra_opts: "{{ item.opts }}"
     remote_src: yes
     owner: root
   loop: "{{ packages_url }}"
