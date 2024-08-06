@@ -4,7 +4,6 @@
     policy: targeted
     state: permissive
 
-
 - name: SSHD config
   lineinfile:
     path: /etc/ssh/sshd_config
@@ -15,3 +14,9 @@
     - { key: "ClientAliveInterval", value: 180 }
   notify:
     - Restart sshd
+
+- name: Change default HOME
+  lineinfile:
+    path: /etc/default/aaduseradd
+    regexp: '^# HOME='
+    line: 'HOME=/home/memory/'

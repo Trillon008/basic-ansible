@@ -13,12 +13,11 @@
 
 - name: Install packages
   ansible.builtin.dnf:
-    name:
+    name: 
       - "{{ item }}"
     state: present
     disable_gpg_check: false
   loop: "{{ packages }}"
-
 
 - name: Install extra packages from url
   ansible.builtin.unarchive:
@@ -29,3 +28,4 @@
     remote_src: yes
     owner: root
   loop: "{{ packages_url }}"
+  ignore_errors: true

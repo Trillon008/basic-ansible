@@ -6,15 +6,21 @@ packages:
   - curl
   - bash-completion
   - bind-utils
+  - net-tools
+  - sysstat
   - bat
   - tmux
   - postgresql
   - htop
+  - btop
   - unzip
+  - vim-common
   - neovim
   - kubectl
   - azcopy
   - azure-cli
+  - podman
+  - distrobox
 
 packages_url:
   - { name: k9s, url: https://github.com/derailed/k9s/releases/download/v0.32.5/k9s_Linux_amd64.tar.gz, opts: "" }
