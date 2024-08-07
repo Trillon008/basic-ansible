@@ -20,3 +20,11 @@
     path: /etc/default/aaduseradd
     regexp: '^# HOME='
     line: 'HOME=/home/memory'
+
+- name: Reboot if required
+  lineinfile:
+    path: /root/ansible_config.ok
+    line: "rebooted"
+    create: true
+    owner: root
+  notify: Reboot

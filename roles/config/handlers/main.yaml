@@ -3,3 +3,10 @@
   ansible.builtin.systemd:
     name: sshd
     state: restarted
+
+# There is a reboot module for this but it has a failsafe and refuses to launch on a controller node
+- name: Reboot
+  ansible.builtin.command:
+    cmd: systemctl reboot
+
+
