@@ -19,4 +19,4 @@
   lineinfile:
     path: /etc/default/aaduseradd
     regexp: '^# HOME='
-    line: 'HOME=/home/memory/'
+    line: 'HOME=/home/memory'
