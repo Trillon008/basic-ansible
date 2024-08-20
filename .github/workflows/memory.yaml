@@ -32,12 +32,8 @@ jobs:
     needs: [core]
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - id: memo-plan
-        name: plan
-        run: |
-          echo "TF plan memo"
+      - uses: actions/checkout@v4
+      - uses: ./composite-action/tf_plan.yaml
 
   mry-stg-we:
     needs: [core]

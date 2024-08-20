@@ -1,0 +1,10 @@
+name: "Terraform"
+description: "Runs terraform"
+runs:
+  using: "composite"
+  steps:
+  - uses: actions/checkout@v2
+  - run: |
+      echo "Terraform init"
+    #- run: |
+    #    echo "terraform plan --chdir=stacks/{{ github.job }}"
