@@ -17,7 +17,7 @@ jobs:
         run: |
           echo "terraform plan core"
   
-  memory-we-prd:
+  mry-prd-we:
     needs: [core]
     runs-on: ubuntu-latest
     steps:
@@ -28,7 +28,7 @@ jobs:
         run: |
           echo "TF plan memo"
 
-  memory-uae-prd:
+  mry-prd-uae:
     needs: [core]
     runs-on: ubuntu-latest
     steps:
@@ -39,8 +39,8 @@ jobs:
         run: |
           echo "TF plan memo"
 
-  memory-we-stg:
-    needs: [memory-we-prd]
+  mry-stg-we:
+    needs: [core]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -49,3 +49,42 @@ jobs:
         run: |
           echo "TF plan memo"
 
+  mry-stg-uae:
+    needs: [core]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: plan
+        run: |
+          echo "TF plan memo"
+
+  arf-prd-we:
+    needs: [mry-prd-we]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: plan
+        run: |
+          echo "TF plan memo"
+
+  arf-prd-stg:
+    needs: [mry-stg-we, arf-prd-we]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: plan
+        run: |
+          echo "TF plan memo"
+  
+  edi-prd-we:
+    needs: [mry-prd-we]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: plan
+        run: |
+          echo "TF plan memo"
