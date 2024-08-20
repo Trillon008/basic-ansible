@@ -2,9 +2,20 @@ name: 'Memory'
 
 on:
   workflow_dispatch:
+    inputs:
+      tenant-id:
+        type: choice
+        description: strack
+        default: all
+        options:
+        - all
+        - arf-prd-we
+        - mry-prd-we
+        - arf-stg-we
   push:
     branches:
       - main
+
 
 jobs:
   core:
@@ -17,6 +28,7 @@ jobs:
 
   mry-prd-we:
     needs: [core]
+    if: inputs.tenant-id == 'mry-prd-we' || inputs.tenant-id == 'all'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -64,7 +76,7 @@ jobs:
         run: |
           echo "TF plan memo"
 
-  arf-prd-stg:
+  arf-stg-we:
     needs: [mry-stg-we, arf-prd-we]
     runs-on: ubuntu-latest
     steps:
