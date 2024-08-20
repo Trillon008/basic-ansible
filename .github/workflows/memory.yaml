@@ -1,0 +1,51 @@
+name: 'Memory'
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  core:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - id: tf-plan
+        name: plan
+        run: |
+          echo "terraform plan core"
+  
+  memory-we-prd:
+    needs: [core]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - id: memo-plan
+        name: plan
+        run: |
+          echo "TF plan memo"
+
+  memory-uae-prd:
+    needs: [core]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - id: memo-plan
+        name: plan
+        run: |
+          echo "TF plan memo"
+
+  memory-we-stg:
+    needs: [memory-we-prd]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: plan
+        run: |
+          echo "TF plan memo"
+
