@@ -12,11 +12,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - id: tf-plan
-        name: plan
-        run: |
-          echo "terraform plan core"
-  
+      - name: Terraform
+        uses: ./.github/actions/tfplan
+
   mry-prd-we:
     needs: [core]
     runs-on: ubuntu-latest
@@ -33,7 +31,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ./composite-action/tf_plan.yaml
+      - uses: ./.github/actions/tfplan
+        name: "Terraform Plan"
 
   mry-stg-we:
     needs: [core]
